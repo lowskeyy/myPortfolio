@@ -134,26 +134,34 @@
                 </div>
                 <div class="row mt-5 justify-content-center">
                     <div class="col-md-6">
-                        <form>
+                        <div class="alert alert-success alert-dismissible fade show d-none" role="alert" id="alert-btn">
+                            <strong>Thank You!</strong> Your Message Was Received !
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                        <form name="contact-me">
                             <div class="mb-3">
                               <label for="name" class="form-label">Our Name
                               </label>
-                              <input type="text" class="form-control" id="name" placeholder="Input Our Name Here"> 
+                              <input type="text" class="form-control" id="name" placeholder="Input Our Name Here" name="nama"> 
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="example@gmail.com">
+                                <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="example@gmail.com" name="email">
                               </div>
 
                                                         
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Message : </label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="pesan"></textarea>
                             </div>
-
                             
-                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <button type="submit" class="btn btn-danger" id="btn-submit">Submit</button>
+
+                            <button class="btn btn-danger d-none" type="button" disabled id="btn-loading">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button>
                           </form>
                     </div>
                 </div>
@@ -170,5 +178,34 @@
         <!-- FOOTER END -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyKxl6eozycu5EF0TpljPadF9-8Bbitpn7Z_Uky3B-uVEeQlZt_enGBU3D6ATFEAlU/exec'
+            const form = document.forms['contact-me']
+            const loadBtn = document.getElementById('btn-loading');
+            const alertBtn = document.getElementById('alert-btn');
+            const btnSubmit = document.getElementById('btn-submit');
+
+
+            form.addEventListener('submit', (e) => {
+              e.preventDefault(); 
+              // ketika tombol submit di klik
+              // tampilkan tombol loading, hilangkan tombol
+              function tombol() {
+                loadBtn.classList.toggle("d-none");
+                btnSubmit.classList.toggle("d-none");
+              }
+              tombol();
+
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                tombol();
+                alertBtn.classList.toggle("d-none");
+                // reset form
+                form.reset();
+                console.log('Success!', response);
+            })
+                .catch((error) => console.error('Error!', error.message));
+        });
+        </script>
     </body>
 </html>
