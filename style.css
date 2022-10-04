@@ -7,3 +7,90 @@
 .jumbotron {
     padding: 4rem 1rem;
 }
+
+/* Alat Saya Section */
+.alat-box {
+    position: relative;
+    background-color: #DC3545;
+    height: 500px;
+    transform-style: preserve-3d;
+}
+
+.alat-box::before {
+    content: 'ALAT';
+    position: absolute;
+    color: white;
+    font-size: 4em;
+    font-weight: bold;
+    font-style: italic;
+    transform: translate3d(-50%,0,30px);
+    top: 40px;
+    opacity: 0;
+    left: 100px;
+    transition: 0.5s;
+}
+
+.alat-box:hover::before {
+    opacity: .3;
+    left: 50%;
+}
+
+
+.alat-box::after {
+    content: 'SAYA';
+    position: absolute;
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    font-style: italic;
+    transform: translate3d(-50%,0,30px);
+    top: 300px;
+    opacity: 0;
+    left: 50%;
+    transition: 0.5s;
+}
+
+.alat-box:hover::after {
+    opacity: .3;
+    left: 50%;
+    top: 370px;
+}
+
+.img-name {
+    font-size: 2rem;
+    color: white;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 0 2px black;
+}
+
+.alat-box:hover .img-name {
+    opacity: .7;
+    transform: translate3d(0,50%,50px);
+}
+
+.alat-box-button {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    margin-bottom: 10px;
+    transition: .5s;
+    opacity: 0;
+}
+
+.alat-box:hover .alat-box-button {
+    opacity: .7;
+    transform: translate3d(-50%, -40%,40px);
+}
+
+.alat-box img {
+    margin-top: 100px;
+    width: 400px;
+    transition: .5s;
+}
+
+.alat-box:hover img {
+    scale: 1.15;
+    transform: translate3d(0, 0,70px);
+}
