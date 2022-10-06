@@ -11,9 +11,11 @@
 /* Alat Saya Section */
 .alat-box {
     position: relative;
-    background-color: #DC3545;
+    background: linear-gradient(to right bottom, #DC3545, #5b1218);
     height: 500px;
     transform-style: preserve-3d;
+    box-shadow: 0 0 10px black;
+    text-shadow: 0 0 20px black;
 }
 
 .alat-box::before {
@@ -66,7 +68,7 @@
 
 .alat-box:hover .img-name {
     opacity: .7;
-    transform: translate3d(0,50%,50px);
+    transform: translate3d(0,50%,70px);
 }
 
 .alat-box-button {
@@ -81,16 +83,33 @@
 
 .alat-box:hover .alat-box-button {
     opacity: .7;
-    transform: translate3d(-50%, -40%,40px);
+    transform: translate3d(-50%, -40%,80px);
 }
 
 .alat-box img {
     margin-top: 100px;
     width: 400px;
     transition: .5s;
+    box-shadow: 0 0 20px black;
 }
 
 .alat-box:hover img {
     scale: 1.15;
     transform: translate3d(0, 0,70px);
 }
+
+.alat-box a {
+    box-shadow: 0 0 20px black;
+}
+
+.alat-box h3 {
+    text-shadow: 0 0 20px black;
+}
+
+#contact,
+#sekolah-saya,
+#projects,
+#about {
+    overflow: hidden;
+}
+
